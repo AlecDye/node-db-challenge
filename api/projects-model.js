@@ -6,6 +6,8 @@ module.exports = {
   getTasks,
   getResources,
   add,
+  addTask,
+  addResource,
 };
 
 // database methods go here
@@ -36,3 +38,13 @@ function add(projectData) {
       return findById(id);
     });
 }
+
+function addTask(taskData) {
+  return db("tasks").insert(taskData, "id");
+  // .then((ids) => {
+  //     const ids = [id];
+  //   return getTasks(id);
+  // });
+}
+
+function addResource() {}
