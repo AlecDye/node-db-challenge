@@ -34,4 +34,46 @@ router.get("/:id", (req, res) => {
     });
 });
 
+router.get("/:id/tasks", (req, res) => {
+  const id = req.params.id;
+  Projects.getTasks(id)
+    .then((descs) => {
+      res.status(200).json(descs);
+    })
+    .catch((error) => {
+      res.status(500).json({ errorMessage: "Failed to get tasks", error });
+    });
+});
+
+router.get("/:id/resources", (req, res) => {
+  const id = req.params.id;
+  Projects.getResources(id)
+    .then((items) => {
+      res.status(200).json(items);
+    })
+    .catch((error) => {
+      res
+        .status(500)
+        .json({ errorMessage: "Failed to get shopping list", error });
+    });
+});
+
+// projects
+router.post("/", (req, res) => {
+  const projectData = req.body;
+  Projects.add(projectData)
+    .then((project) => {
+      res.status(201).json(project);
+    })
+    .catch((error) => {
+      res.status(500).json({ errorMessage: "Failed to create project", error });
+    });
+});
+
+// tasks
+router.post("/:id/tasks", (res, req) => {});
+
+// resources
+router.post("/:id/resources", (res, req) => {});
+
 module.exports = router;
