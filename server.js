@@ -2,8 +2,8 @@ const express = require("express");
 const helmet = require("helmet");
 
 //todo Create multiple routers
-const ProjectsRouter = require("./projects/projects-router.js");
-const ResourcesRouter = require("./resources/resources-router.js");
+const ProjectsRouter = require("./projects/projects-router");
+const ResourcesRouter = require("./resources/resources.router");
 
 const server = express();
 
