@@ -18,13 +18,18 @@ function findProjectById(id) {
 function createProject(projectData) {
   return db("projects").insert(projectData);
 }
-function findTask(id) {
-  return;
-  db("tasks")
-    .select("*")
+function findTask(project_id) {
+  return db("tasks")
     .join("projects", "tasks.project_id", "projects.id")
-    .where({ id });
+    .where({ project_id })
+    .select(
+      "tasks.id",
+      "projects.p_name",
+      "projects.p_desc",
+      "tasks.t_desc",
+      "tasks.t_notes"
+    );
 }
-function createTask(taskData) {
-  return db("tasks").insert(taskData);
+function createTask(newTask) {
+  return db("tasks").insert(newTask);
 }

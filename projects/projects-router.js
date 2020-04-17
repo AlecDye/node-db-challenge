@@ -54,10 +54,19 @@ router.post("/", (req, res) => {
 router.post("/:id/tasks", (req, res) => {
   const taskData = req.body;
   const { id } = req.params;
-  Projects.createTask(taskData)
-    .then((task) => {
-      res.status(201).json(task);
+  Projects.findProjectById(id)
+    .then((project) => {
+      if (project) {
+        Projects.createTask(taskData, id).then((task) => {
+          res.status(201).json(task);
+        });
+      }
     })
+
+    //   Projects.createTask(newTask)
+    //     .then((task) => {
+    //       res.status(201).json(newTask);
+    //     })
     .catch((err) => {
       res.status(500).json({ errorMessage: "Failed to create task(s)", err });
     });
