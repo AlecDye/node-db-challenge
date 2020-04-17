@@ -39,12 +39,16 @@ Commit your code regularly and use descriptive messages. This helps both you (in
 Demonstrate your understanding of this week's concepts by answering the following free-form questions. Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your project manager.
 
 - [ ] Explain the difference between `Relational Databases` and `SQL`.
+      A: `Relational DBs` manage(store) the server data while `SQL` is a programming language intended to sort and edit through the server data only
 
 - [ ] Why do tables need a `primary key`?
+      A: `Primary keys` allow tables to have control over their entries and can easily be referenced via foreign keys from other tables.
 
 - [ ] What is the name given to a table column that references the primary key on another table.
+      A: `Foreign key`
 
 - [ ] What do we need in order to have a _many to many_ relationship between two tables.
+      A: `junction table` which converts a _many to many_ relationship into 2 separate _one to many_ relationships which is easier to manage
 
 ## Minimum Viable Product
 

@@ -48,6 +48,7 @@ router.get("/:id/tasks", (req, res) => {
     });
 });
 
+// success
 router.get("/:id/resources", (req, res) => {
   const id = req.params.id;
   Projects.getResources(id)
@@ -94,6 +95,21 @@ router.post("/:id/tasks", (req, res) => {
 });
 
 // resources
-router.post("/:id/resources", (res, req) => {});
+// don't need id? is not exclusive to specific project
+router.post("/:id/resources", (req, res) => {
+  const resourceData = req.body;
+  const id = req.params.id;
+
+  Projects.findById(id);
+  Projects.addResource(resourceData)
+    .then((resource) => {
+      res.status(201).json(resource);
+    })
+    .catch((error) => {
+      res
+        .status(500)
+        .json({ errorMessage: "Failed to create resource", error });
+    });
+});
 
 module.exports = router;

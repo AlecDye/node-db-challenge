@@ -27,7 +27,7 @@ function getResources(id) {
   return db("project_resources")
     .join("projects", "project_resources.project_id", "projects.id")
     .join("resources", "project_resources.resource_id", "resources.id")
-    .select("projects.project_title", "project_resource.*")
+    .select("projects.project_title", "project_resources.*")
     .where("projects.id", id);
 }
 
@@ -40,11 +40,18 @@ function add(projectData) {
 }
 
 function addTask(taskData) {
-  return db("tasks").insert(taskData, "id");
-  // .then((ids) => {
-  //     const ids = [id];
-  //   return getTasks(id);
-  // });
+  return (
+    db("tasks")
+      .insert(taskData, "id")
+      // .then((ids) => {
+      //     const ids = [id];
+      //   return getTasks(id);
+      // });
+      .then(([id]) => findById(id))
+  );
 }
 
-function addResource() {}
+function addResource(resourceData) {
+  return db("resources").insert(resourceData);
+  // .then(([id]) => findById(id));
+}
