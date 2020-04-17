@@ -4,16 +4,16 @@ exports.up = function (knex) {
       // Projects table
       .createTable("projects", (tbl) => {
         tbl.integer("id").primary();
-        tbl.string("title").notNullable().unique();
+        tbl.string("project_title").notNullable().unique();
         tbl.string("project_desc");
-        tbl.boolean("completed").notNullable().defaultTo(false);
+        tbl.boolean("project_completed").notNullable().defaultTo(false);
       })
       // Tasks table
       .createTable("tasks", (tbl) => {
         tbl.integer("id").primary();
-        tbl.string("desc").notNullable().unique();
-        tbl.string("notes");
-        tbl.boolean("completed").notNullable().defaultTo(false);
+        tbl.string("task_desc").notNullable().unique();
+        tbl.string("task_notes");
+        tbl.boolean("task_completed").notNullable().defaultTo(false);
         // Foreign key (projects)
         tbl
           .integer("project_id")
@@ -26,8 +26,8 @@ exports.up = function (knex) {
       // Resources table
       .createTable("resources", (tbl) => {
         tbl.integer("id").primary();
-        tbl.string("name").notNullable().unique();
-        tbl.string("desc");
+        tbl.string("resource_name").notNullable().unique();
+        tbl.string("resource_desc");
       })
       // Project to Resource junction table
       .createTable("project_resources", (tbl) => {
