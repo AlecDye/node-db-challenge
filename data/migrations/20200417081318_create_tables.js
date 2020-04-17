@@ -6,14 +6,14 @@ exports.up = function (knex) {
         tbl.integer("id").primary();
         tbl.string("title").notNullable().unique();
         tbl.string("project_desc");
-        tbl.boolean("completed").defaultTo(false);
+        tbl.boolean("completed").notNullable().defaultTo(false);
       })
       // Tasks table
       .createTable("tasks", (tbl) => {
         tbl.integer("id").primary();
         tbl.string("desc").notNullable().unique();
         tbl.string("notes");
-        tbl.boolean("completed").defaultTo(false);
+        tbl.boolean("completed").notNullable().defaultTo(false);
         // Foreign key (projects)
         tbl
           .integer("project_id")
